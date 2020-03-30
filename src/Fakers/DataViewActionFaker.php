@@ -18,6 +18,9 @@ class DataViewActionFaker extends Faker
         $bag = new Bag();
         $bag->set('name', $faker->name);
         $bag->set('description', $faker->text);
+        $bag->set('workflow', WorkflowFaker::make()->parameters()->toArray());
+        $bag->set('data', 'data-view');
+        $bag->set('scope', 'global');
 
         return $bag;
     }

@@ -16,8 +16,14 @@ class CreateDataViewActionsTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->text('description')->nullable();
+
+            $table->string('data');
+            $table->string('scope');
+
+            $table->integer('workflow_id')->unsigned();
+            $table->foreign('workflow_id')->references('id')->on(Config::get('amethyst.action.data.workflow.table'));
+
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

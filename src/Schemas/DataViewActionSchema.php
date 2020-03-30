@@ -4,6 +4,7 @@ namespace Amethyst\Schemas;
 
 use Railken\Lem\Attributes;
 use Railken\Lem\Schema;
+use Amethyst\Managers\WorkflowManager;
 
 class DataViewActionSchema extends Schema
 {
@@ -20,9 +21,16 @@ class DataViewActionSchema extends Schema
                 ->setRequired(true)
                 ->setUnique(true),
             Attributes\LongTextAttribute::make('description'),
+            \Amethyst\Core\Attributes\DataNameAttribute::make('data')
+                ->setRequired(true),
+            Attributes\BelongsToAttribute::make('workflow_id')
+                ->setRelationName('workflow')
+                ->setRelationManager(WorkflowManager::class)
+                ->setRequired(true),
+            Attributes\EnumAttribute::make('scope', ['global', 'resource'])
+                ->setRequired(true),
             Attributes\CreatedAtAttribute::make(),
-            Attributes\UpdatedAtAttribute::make(),
-            Attributes\DeletedAtAttribute::make(),
+            Attributes\UpdatedAtAttribute::make()
         ];
     }
 }
