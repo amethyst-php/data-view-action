@@ -2,9 +2,9 @@
 
 namespace Amethyst\Schemas;
 
+use Amethyst\Managers\WorkflowManager;
 use Railken\Lem\Attributes;
 use Railken\Lem\Schema;
-use Amethyst\Managers\WorkflowManager;
 
 class DataViewActionSchema extends Schema
 {
@@ -31,7 +31,7 @@ class DataViewActionSchema extends Schema
                 ->setRequired(true),
             Attributes\YamlAttribute::make('body'),
             Attributes\CreatedAtAttribute::make(),
-            Attributes\UpdatedAtAttribute::make()
+            Attributes\UpdatedAtAttribute::make(),
         ];
     }
 }

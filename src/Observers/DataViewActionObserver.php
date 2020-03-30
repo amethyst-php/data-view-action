@@ -2,11 +2,7 @@
 
 namespace Amethyst\Observers;
 
-use Amethyst\DataViewAction\Helper;
-use Amethyst\DataViewAction\Manager;
 use Amethyst\Models\DataViewAction;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Symfony\Component\Yaml\Yaml;
 
 class DataViewActionObserver
@@ -19,8 +15,8 @@ class DataViewActionObserver
     public function created(DataViewAction $dataViewAction)
     {
         $resource = app('amethyst')->get('data-view')->findOrCreateOrFail([
-            'name'    => sprintf('~%s~.%s', $dataViewAction->data, $dataViewAction->name),
-            'type'    => 'component',
+            'name' => sprintf('~%s~.%s', $dataViewAction->data, $dataViewAction->name),
+            'type' => 'component',
         ]);
 
         $this->updated($dataViewAction);
@@ -34,9 +30,9 @@ class DataViewActionObserver
     public function updated(DataViewAction $dataViewAction)
     {
         $resource = app('amethyst')->get('data-view')->getRepository()->findOneBy([
-            'name'    => sprintf(
-                '~%s~.%s', 
-                $dataViewAction->getOriginal()['data'] ?? $dataViewAction->data, 
+            'name' => sprintf(
+                '~%s~.%s',
+                $dataViewAction->getOriginal()['data'] ?? $dataViewAction->data,
                 $dataViewAction->getOriginal()['name'] ?? $dataViewAction->name
             ),
         ]);
@@ -50,19 +46,19 @@ class DataViewActionObserver
             'require' => $dataViewAction->data,
             'config'  => Yaml::dump([
                 'label'   => $dataViewAction->name,
-                'extends' => "resource-execute",
+                'extends' => 'resource-execute',
                 'type'    => 'action',
                 'scope'   => $dataViewAction->scope,
                 'options' => [
                     'http' => [
                         'method' => 'POST',
-                        'url' => $api."/workflow/execute",
-                        'query' => "id eq {$dataViewAction->workflow_id}",
-                        'body' => Yaml::parse(strval($dataViewAction->body))
-                    ]
-                ]
+                        'url'    => $api.'/workflow/execute',
+                        'query'  => "id eq {$dataViewAction->workflow_id}",
+                        'body'   => Yaml::parse(strval($dataViewAction->body)),
+                    ],
+                ],
             ], 10),
-            'parent_id' => app('amethyst')->get('data-view')->getRepository()->findOneBy(['name' => sprintf('~%s~.data.iterator.table', $dataViewAction->data)])
+            'parent_id' => app('amethyst')->get('data-view')->getRepository()->findOneBy(['name' => sprintf('~%s~.data.iterator.table', $dataViewAction->data)]),
         ];
 
         app('amethyst')->get('data-view')->updateOrFail($resource, $params);
@@ -76,7 +72,7 @@ class DataViewActionObserver
     public function deleted(DataViewAction $dataViewAction)
     {
         app('amethyst')->get('data-view')->getRepository()->findOneBy([
-            'name'    => sprintf('~%s~.%s', $dataViewAction->data, $dataViewAction->name)
+            'name' => sprintf('~%s~.%s', $dataViewAction->data, $dataViewAction->name),
         ])->delete();
     }
 }
