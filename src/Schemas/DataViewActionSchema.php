@@ -29,6 +29,7 @@ class DataViewActionSchema extends Schema
                 ->setRequired(true),
             Attributes\EnumAttribute::make('scope', ['global', 'resource'])
                 ->setRequired(true),
+            Attributes\YamlAttribute::make('body'),
             Attributes\CreatedAtAttribute::make(),
             Attributes\UpdatedAtAttribute::make()
         ];

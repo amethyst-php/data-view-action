@@ -58,9 +58,7 @@ class DataViewActionObserver
                         'method' => 'POST',
                         'url' => $api."/workflow/execute",
                         'query' => "id eq {$dataViewAction->workflow_id}",
-                        'body' => [
-                            'queue' => 1
-                        ]
+                        'body' => Yaml::parse(strval($dataViewAction->body))
                     ]
                 ]
             ], 10),
