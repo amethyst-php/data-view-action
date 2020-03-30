@@ -1,7 +1,6 @@
 # amethyst-data-view-action
 
-
-[![Action Status](https://github.com/amethyst-php/data-view-action/workflows/test/badge.svg)](https://github.com/amethyst-php/data-view-action/actions)
+[![Action Status](https://github.com/amethyst-php/data-view-action/workflows/Test/badge.svg)](https://github.com/amethyst-php/data-view-action/actions)
 
 [Amethyst](https://github.com/amethyst-php/amethyst) package.
 
@@ -19,10 +18,6 @@ composer require amethyst/data-view-action
 
 The package will automatically register itself.
 
-## Documentation
-
-[Read](docs/index.md)
-
 ## Testing
 
-Configure your phpunit.xml file before launching `./vendor/bin/phpunit`
+Copy `phpunit.xml.dist` to `phpunit.xml` and change your environment before launching `./vendor/bin/phpunit`
