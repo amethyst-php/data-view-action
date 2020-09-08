@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'table'      => 'amethyst_data_view_actions',
+    'table'      => 'data_view_action',
     'comment'    => 'DataViewAction',
     'model'      => Amethyst\Models\DataViewAction::class,
     'schema'     => Amethyst\Schemas\DataViewActionSchema::class,
