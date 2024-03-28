@@ -2,7 +2,7 @@
 
 namespace Amethyst\Tests;
 
-abstract class BaseTest extends \Orchestra\Testbench\TestCase
+abstract class BaseTestCase extends \Orchestra\Testbench\TestCase
 {
     /**
      * Setup the test environment.

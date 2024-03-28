@@ -4,13 +4,12 @@
     "keywords": ["laravel", "amethyst", "data-view-action"],
     "license": "MIT",
     "require": {
-        "php": ">=7.2",
-        "amethyst/core": "0.2.*",
-        "amethyst/action": "0.2.*",
-        "amethyst/data-view": "0.2.*"
+        "php": ">=8.2",
+        "amethyst/core": "0.3.*",
+        "amethyst/action": "0.3.*",
+        "amethyst/data-view": "0.3.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
         "orchestra/testbench": "*"
     },
     "autoload": {
