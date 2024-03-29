@@ -13,7 +13,7 @@ class CreateDataViewActionsTable extends Migration
     public function up()
     {
         Schema::create(Config::get('amethyst.data-view-action.data.data-view-action.table'), function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name')->unique();
             $table->text('description')->nullable();
 
