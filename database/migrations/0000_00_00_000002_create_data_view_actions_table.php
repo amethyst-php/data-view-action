@@ -21,8 +21,7 @@ class CreateDataViewActionsTable extends Migration
             $table->string('scope');
             $table->text('body')->nullable();
 
-            $table->integer('workflow_id')->unsigned();
-            $table->foreign('workflow_id')->references('id')->on(Config::get('amethyst.action.data.workflow.table'));
+            $table->foreignId('workflow_id')->on(Config::get('amethyst.action.data.workflow.table'));
 
             $table->timestamps();
         });
